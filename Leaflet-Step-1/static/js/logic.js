@@ -45,3 +45,25 @@ var myMap = L.map("mapid", {
         return "lightgreen";
     }
   }
+
+  // GeoJSON layer 
+  // Popup creation for place and time of the earthquake
+  L.geoJSON(earthquakeData, {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, 
+        // Style of the markers based on properties.mag
+        {
+          radius: markerSize(feature.properties.mag),
+          fillColor: chooseColor(feature.geometry.coordinates[2]),
+          fillOpacity: 0.7,
+          color: "black",
+          stroke: true,
+          weight: 0.5
+        }
+      );
+    },
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h3>Location: " + feature.properties.place + "</h3><hr><p>Date: "
+      + new Date(feature.properties.time) + "</p><hr><p>Magnitude: " + feature.properties.mag + "</p>");
+    }
+  }).addTo(earthquakes);
