@@ -15,3 +15,10 @@ var grayscaleMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/
   id: "mapbox/light-v10",
   accessToken: API_KEY
 });
+
+// Create map object
+var myMap = L.map("mapid", {
+    center: [38.92, -97],
+    zoom: 5,
+    layers: [grayscaleMap, earthquakes]
+  });
