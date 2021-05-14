@@ -40,3 +40,16 @@ var baseMaps = {
     "Grayscale": grayscaleMap,
     "Outdoors": outdoorsMap,
 };
+
+// Add overlay objects 
+var overlayMaps = {
+    "Tectonic Plates": tectonicplates,
+    "Earthquakes": earthquakes
+  };
+
+// Add Satellite Map and earthquakes layers
+var myMap = L.map("mapid", {
+    center: [38.92, -97],
+    zoom: 5,
+    layers: [satelliteMap, earthquakes]
+  });
