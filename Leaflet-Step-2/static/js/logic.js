@@ -45,11 +45,39 @@ var baseMaps = {
 var overlayMaps = {
     "Tectonic Plates": tectonicplates,
     "Earthquakes": earthquakes
-  };
+};
 
 // Add Satellite Map and earthquakes layers
 var myMap = L.map("mapid", {
     center: [38.92, -97],
     zoom: 5,
     layers: [satelliteMap, earthquakes]
-  });
+});
+
+// Add layer control 
+L.control.layers(baseMaps, overlayMaps, {
+    collapsed: false
+}).addTo(myMap);
+  
+  d3.json(earthquakesURL, function(earthquakeData) {
+    // Markers size by magnitude
+    function markerSize(magnitude) {
+      return magnitude * 4;
+};
+// Markers color depth
+function chooseColor(depth) {
+    switch(true) {
+      case depth > 90:
+        return "red";
+      case depth > 70:
+        return "orangered";
+      case depth > 50:
+        return "orange";
+      case depth > 30:
+        return "gold";
+      case depth > 10:
+        return "yellow";
+      default:
+        return "lightgreen";
+    }
+  }
