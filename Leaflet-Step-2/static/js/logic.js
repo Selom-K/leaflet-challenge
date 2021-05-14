@@ -33,3 +33,10 @@ var outdoorsMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
   id: "mapbox/outdoors-v11",
   accessToken: API_KEY
 });
+
+// Add baseMap objects 
+var baseMaps = {
+    "Satellite": satelliteMap,
+    "Grayscale": grayscaleMap,
+    "Outdoors": outdoorsMap,
+};
